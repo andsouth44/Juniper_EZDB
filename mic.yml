@@ -1,0 +1,29 @@
+---
+
+# -------------------------------------------------------------------
+# Table
+# -------------------------------------------------------------------
+# Collect MIC details.
+# -------------------------------------------------------------------
+
+MicHwTable:
+    rpc: get-chassis-inventory
+    item: .//name[starts-with(.,'MIC')]/parent::*
+    key:
+        - ancestor::chassis-module/name
+        - name
+    view: _mic_hw_view
+
+# -------------------------------------------------------------------
+# View
+# -------------------------------------------------------------------
+# Extract various bits of information from the MIC items
+# -------------------------------------------------------------------
+
+_mic_hw_view:
+    fields:
+        sn: serial-number
+        pn: part-number
+        desc: description
+        ver: version
+        model: model-number

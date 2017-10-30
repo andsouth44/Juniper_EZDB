@@ -1,0 +1,49 @@
+
+EZDB
+-------------
+
+How to Use:
+
+Select the table you would like to search - Facts, FPCS or MICS.
+Select the column you would like to search.
+Select the value you would like to search for.
+Select what column(s) you would like to see returned from the search or whether you would like to see all columns returned.
+Click the 'Search' button.
+If nothing happens and no error is displayed then you are probably searching for something that does not exist.
+
+Example1:
+To see all the information about all FPCs installed in Smith Town PE2 ->
+Select DB Table to search - 'FPCS'
+Select column to search  - 'hostname'
+Select value to search for - 'smithtownpe2'
+Select column to display(* for all) - '*'
+Click 'Search'.
+
+Example2:
+To see the software version running in Smith Town SWT2 ->
+Select DB Table to search - 'Facts'
+Select column to search  - 'hostname'
+Select value to search for - 'smithtownswt002'
+Select column to display(* for all) - 'version'
+Click 'Search'.
+
+
+Database Details:
+
+The database has 3 tables - 'Facts' contains general device information, 'FPCS' contains FPC information  and 'MICS' contains MIC information. (FPCS and MICS are valid for MX480s only).
+Each table is comprised of a number of rows and columns. Each row represents a device/FPC/MIC and each column represents a particular parameter, e.g. serial number, model number etc
+
+Background:
+
+EZDB is built with Python2.7 and TKinter.
+The TKinter GUI organizes user input and users Python to initiate an SQL call to the database.
+The database is created with a separate Python2.7 program. The program uses Python2.7, SQLite3 and the Juniper PyEZ Python library. The program runs through a list of device names and extracts data from the devices before storing the information in a standard SQLite3 database. SQLite3 is not a client/server database so each user must hold a copy of the database file. When EZDB loads it checks to see if a copy of the database file exists on the local machine and if it does not then it loads the latest version from the server. A manual refresh of the local database file can be initiated by clicking the 'Update DB' button. The date the current database file was created is displayed in the 'DB Version' box.
+
+Pre-Requisites:
+To run EZDB you need to have Python2.7 and ActiveTcl installed. EZDB is not designed to run with newer versions of Python.
+EZDB will run on Mac and Windows devices.
+
+Roadmap:
+Improve exception handling
+Add 'save output to file' feature
+Add functionality to retrieve info from virtual chassis members
